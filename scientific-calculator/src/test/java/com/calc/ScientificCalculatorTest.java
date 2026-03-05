@@ -1,38 +1,36 @@
 package com.calc;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Test;
+import java.math.BigInteger;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+import static org.junit.jupiter.api.Assertions.*;
+
+public class ScientificCalculatorTest {
+
+    @Test
+    void testSqrt() {
+        assertEquals(5.0, ScientificCalculator.sqrt(25));
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    @Test
+    void testFactorial() {
+        assertEquals(BigInteger.valueOf(120), ScientificCalculator.factorial(5));
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    void testLn() {
+        assertEquals(1.0, ScientificCalculator.ln(Math.E), 0.0001);
+    }
+
+    @Test
+    void testPower() {
+        assertEquals(8.0, ScientificCalculator.power(2,3));
+    }
+
+    @Test
+    void testSqrtNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            ScientificCalculator.sqrt(-5);
+        });
     }
 }
