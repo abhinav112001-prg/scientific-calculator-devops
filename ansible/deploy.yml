@@ -1,0 +1,27 @@
+- name: Deploy Scientific Calculator Container
+  hosts: localhost
+
+  collections:
+    - community.docker
+
+  tasks:
+
+    - name: Pull latest Docker image
+      docker_image:
+        name: abhinav112001/scientific-calculator
+        tag: latest
+        source: pull
+
+    - name: Stop existing container if running
+      docker_container:
+        name: scientific-calculator
+        state: absent
+
+    - name: Run new container
+      docker_container:
+        name: scientific-calculator
+        image: abhinav112001/scientific-calculator:latest
+        state: started
+        tty: true
+        interactive: true
+        recreate: yes
