@@ -41,6 +41,12 @@
                     }
                 }
             }
+
+            stage('Deploy using Ansible') {
+                steps {
+                    sh 'ansible-playbook ansible/deploy.yml'
+                }
+            }
         }
 
         post {
