@@ -9,7 +9,7 @@
 
             stage('Checkout Code') {
                 steps {
-                    git 'https://github.com/abhinav112001-prg/scientific-calculator-devops.git'
+                    checkout scm
                 }
             }
 
